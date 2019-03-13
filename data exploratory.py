@@ -22,10 +22,10 @@ train.columns
 
 
 #quantitative data
-quantitative = [f for f in df_train.columns if df_train.dtypes[f] != 'object']
+quantitative = [f for f in train.columns if train.dtypes[f] != 'object']
 quantitative.remove('SalePrice')
 quantitative.remove('Id')
-qualitative = [f for f in df_train.columns if df_train.dtypes[f] == 'object']
+qualitative = [f for f in train.columns if train.dtypes[f] == 'object']
 
 # %matplotlib inline
 #correlation matrix - relationship between variables
