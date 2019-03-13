@@ -14,7 +14,7 @@ from matplotlib.pyplot import xticks
 #import data
 test = pd.read_csv(r"C:\Users\deya_\Desktop\university\ce101\test.csv")
 train = pd.read_csv(r"C:\Users\deya_\Desktop\university\ce101\train.csv")
-print(df_train.columns)
+print(train.columns)
 
 train.head()
 
@@ -167,30 +167,30 @@ res = stats.probplot(train['SalePrice'], plot=plt)
 df_train['SalePrice'] = np.log(df_train['SalePrice'])
 
 #histogram and normal probability plot
-sns.distplot(df_train['GrLivArea'], fit=norm);
+sns.distplot(train['GrLivArea'], fit=norm);
 fig = plt.figure()
-res = stats.probplot(df_train['GrLivArea'], plot=plt)
+res = stats.probplot(train['GrLivArea'], plot=plt)
 
 #data transformation
 train['GrLivArea'] = np.log(train['GrLivArea'])
 
 
 #transformed histogram and normal probability plot
-sns.distplot(df_train['GrLivArea'], fit=norm);
+sns.distplot(train['GrLivArea'], fit=norm);
 fig = plt.figure()
-res = stats.probplot(df_train['GrLivArea'], plot=plt)
+res = stats.probplot(train['GrLivArea'], plot=plt)
 
 
 #histogram and normal probability plot
-sns.distplot(df_train['TotalBsmtSF'], fit=norm);
+sns.distplot(train['TotalBsmtSF'], fit=norm);
 fig = plt.figure()
-res = stats.probplot(df_train['TotalBsmtSF'], plot=plt)
+res = stats.probplot(train['TotalBsmtSF'], plot=plt)
 
 #create column for new variable (one is enough because it's a binary categorical feature)
 if area>0 it gets 1, for area==0 it gets 0
-df_train['HasBsmt'] = pd.Series(len(df_train['TotalBsmtSF']), index=df_train.index)
-df_train['HasBsmt'] = 0 
-df_train.loc[df_train['TotalBsmtSF']>0,'HasBsmt'] = 1
+train['HasBsmt'] = pd.Series(len(train['TotalBsmtSF']), index=train.index)
+train['HasBsmt'] = 0 
+train.loc[train['TotalBsmtSF']>0,'HasBsmt'] = 1
 
 #transform data
 train.loc[train['HasBsmt']==1,'TotalBsmtSF'] = np.log(train['TotalBsmtSF'])
@@ -199,9 +199,9 @@ sns.countplot(train.YearBuilt)
 xticks(rotation=90)
 
 #histogram and normal probability plot
-sns.distplot(df_train[df_train['TotalBsmtSF']>0]['TotalBsmtSF'], fit=norm);
+sns.distplot(train[train['TotalBsmtSF']>0]['TotalBsmtSF'], fit=norm);
 fig = plt.figure()
-res = stats.probplot(df_train[df_train['TotalBsmtSF']>0]['TotalBsmtSF'], plot=plt)
+res = stats.probplot(train[train['TotalBsmtSF']>0]['TotalBsmtSF'], plot=plt)
 
 #scatter plot
 plt.scatter(train['GrLivArea'], train['SalePrice']);
